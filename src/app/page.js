@@ -20,7 +20,7 @@ export default function Home() {
       {/* circles */}
       <div className="w-[600px h-[600px] absolute border rounded-full -left-[300px] top-[200px]"></div>
       <div className="w-[800px h-[800px] absolute border rounded-full -left-[400px] top-[100px]"></div>
-      <div>hi</div>
+      <div>zail</div>
     </div>
   );
 }
