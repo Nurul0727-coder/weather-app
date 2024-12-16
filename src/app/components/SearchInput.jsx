@@ -1,20 +1,30 @@
-import { SearchIcon } from "./SearchIcon";
-export const SearchInput = ({ search, setSearch }) => {
-  return (
-    <div className="border border-transparent drop-shadow-sm rounded-[24px] bg-white w-96 h-120">
-      <button>
-        <SearchIcon />
-      </button>
-      <input
-        className="w-full ouutline-none mr-1"
-        type="text"
-        placeholder="City Name..."
-        value={search}
-        onChange={onChangeText}
-        onKeyDown={(e) => {
-          console.log(e.code);
-        }}
-      />
-    </div>
-  );
-};
+// import { useState } from "react";
+// import { AiOutlineSearch } from "react-icons/ai";
+
+// export function Search({ visible = true }) {
+//   const [city, setCity] = useState("");
+
+//   const handleChange = (e) => {
+//     setCity(e.target.value);
+//   };
+
+//   const handleSearch = () => {
+//     console.log(city); 
+//   };
+
+//   return (
+//     <div className={`${visible ? 'block' : 'hidden'} w-[400px] h-[55px] bg-white rounded-3xl flex items-center ml-10 mt-10`}>
+//       <AiOutlineSearch className="text-2xl ml-5" />
+//       <input 
+//         className="p-3 text-xl border-none mr-1 focus:outline-none" 
+//         type="text" 
+//         placeholder="City name..." 
+//         value={city}
+//         onChange={handleChange} 
+//       />
+//       <button onClick={handleSearch} className="ml-2 p-2 bg-blue-500 text-white rounded">
+//         Search
+//       </button>
+//     </div>
+//   );
+// }

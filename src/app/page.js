@@ -1,32 +1,44 @@
-import { SearchInput } from "./components/SearchInput";
-import WeatherCard from "./components/WeatherCard";
-import Circle from "./components/circles";
 
-// const = "15ce7f6cb50a4224b3672555241312";
+import WeatherCard from './components/WeatherCard';
+import Circle from './components/circles';
+import Logo from './components/decoration';
+import {Search} from './components/decoration';
+import {Icons} from './components/decoration';
+ 
 
 export default function Home() {
-  // const [search, setSearch] = useState("");
-  // const [city, setCity] = useState('');
-
-  const onChangeText = (event) => {
-    setSearch(event.target.value);
-  };
-
-  // console.log(search);
-
   return (
-    <div className="w-full h-screen flex ">
-      <div className="w-[50%] h-screen bg-stone-50 flex flex--col-reverse items-center justify-between pb-32">
-        <Card value="day" temperature={12} condition={"Sunny"} />
-        {/* <SearchInput search={search} onChangeText={onChangeText} /> */}
-      </div>
-      <div className="w-full h-full flex relative">
-        <div className="w-[50%] h-full  bg-[#F3F4F6] relative">
-          <div className="w-[50%] h-screen bg-stone-50 flex flex--col-reverse items-center pb-32">
-            <Card value="night" temperature={17} />
-          </div>
-          <input className="p-2" placeholder="Search" />
-          <WeatherCard bgcolor="black" />
+    <div className="flex h-screen w-full bg-white justify-center relative">
+      <div className="w-[1200px] h-full flex relative  font-semibold">
+        <div className="w-1/2 h-full bg-[#F3F4F6] relative">
+          <Search visible={true} />
+          <WeatherCard
+            bgcolor="white"
+            date="Sep 10, 2024"
+            cityName="Kraków"
+            temperature="12°"
+            stat="Bright"
+            weatherType="day"
+            textColor="#111827"
+            temperatureColor="black"
+            statColor="#FF8E27" 
+            
+          />
+          <Icons iconColor="black" />
+        </div>
+        <div className="w-1/2 h-full bg-[#0F141E] relative">
+          <Search visible={false} />
+          <WeatherCard
+            bgcolor="#1F2937"
+            date="Sep 10, 2024"
+            cityName="Kraków"
+            temperature="-2°"
+            stat="Clear"
+            weatherType="night"
+            textColor="white"
+            statColor="#777CCE"
+          />
+          <Icons iconColor="white" />
         </div>
         <Circle size={140} />
         <Circle size={340} />
@@ -34,14 +46,7 @@ export default function Home() {
         <Circle size={940} />
         <Circle size={1340} />
       </div>
+      <Logo />
     </div>
   );
 }
-const Card = ({ value, temperature, condition }) => {
-  const nightCardColors =
-    "bg-[#111827BF] bg-gradient-to-b from-[#111827] to-[#1F2937] text-white shadow-[#111827]";
-  const colors = value === "night" ? nightCardColors : "bg-[#F9FAFB]";
-  return (
-    <div className="{'w-[414px] h-[600px] rounded-2xl drop-shadow shadow-[#fff] z-20 ${colors}"></div>
-  );
-};
