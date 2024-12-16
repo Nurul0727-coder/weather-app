@@ -14,11 +14,14 @@ export default function Logo(){
 }
  
 
-export function Search({ visible = true }) {
+export function Search({ search, onChangeText, onPressEnter }) {
   return (
-    <div className={`${visible ? 'block' : 'invisible'} w-[400px] h-[55px] bg-white rounded-3xl flex items-center ml-10 mt-10 absolute z-40`}>
+    <div className={`${visible ? 'block' : 'invisible'} w-[400px] h-[55px] bg-white rounded-3xl flex items-center ml-10 mt-10 absolute z-40 opacity-35`}>
       <AiOutlineSearch className="text-2xl ml-5" />
-      <input className="p-3 text-xl border-none  focus:outline-none" placeholder="City name..." />
+      <input className="p-3 text-xl border-none  focus:outline-none" placeholder="City name..."
+      value ={search} 
+      onChange={onChangeText} onKeyDown={onPressEnter}
+       />
     </div>
   );
 }
@@ -26,13 +29,13 @@ export function Search({ visible = true }) {
  
 export function Icons({ iconColor = 'black' }) {
   const iconClass = iconColor === 'white' ? 'text-white' : 'text-black';
- 
+
   return (
-    <div className="absolute ml-[120px] my-[700px] h-32 w-[360px] flex justify-around z-40 overflow-visible">
+    <div className="absolute ml-[120px] mt-[770px] h-32 w-[360px] flex justify-around z-40 overflow-visible">
       <CiHome className={`text-xl ${iconClass} hover:text-black`} />
       <CiLocationOn className={`text-xl ${iconClass} hover:text-black`} />
       <CiHeart className={`text-xl ${iconClass} hover:text-black`} />
-      <IoPersonOutline className={`text-xl ${iconClass} hover:text-whitez`} />
+      <IoPersonOutline className={`text-xl ${iconClass} hover:text-black`} />
     </div>
   );
 }
