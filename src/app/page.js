@@ -1,18 +1,20 @@
 import WeatherCard from './components/WeatherCard';
 import Circle from './components/circles';
-import Logo from './components/decoration';
+import Logo, { YellowCircle } from './components/decoration';
 import { Search } from './components/decoration';
 import { Icons } from './components/decoration';
 import { CiLocationOn } from "react-icons/ci";
 import { BlueCircle } from './components/decoration';
- 
+// import { YellowCircle } from './components/decoration';
+
+const API_KEY='15ce7f6cb50a4224b3672555241312'
 export default function Home() {
   return (
     <div className="flex h-screen w-full bg-white justify-center relative">
       <div className="w-[1200px] h-full flex relative font-semibold">
   
         <div className="w-1/2 h-full bg-[#F3F4F6] relative">
-        
+        {/* <YellowCircle/> */}
           <Search visible={true} />
           <WeatherCard
             bgcolor="white"
@@ -50,6 +52,8 @@ export default function Home() {
         <Circle size={340} />
         <Circle size={540} />
         <Circle size={940} />
+        {/* <Circle size={1340} /> */}
+
       </div>
       <Logo />
     </div>
