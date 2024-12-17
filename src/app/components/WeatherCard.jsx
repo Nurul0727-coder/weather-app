@@ -1,4 +1,3 @@
-
 export default function WeatherCard({
   bgcolor,
   date,
@@ -19,7 +18,7 @@ export default function WeatherCard({
  
   return (
     <div
-      className={`w-[345px] h-[75w0px] px-7 py-10 rounded-3xl absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
+      className={`w-[345px] h-[750px] px-7 py-10 rounded-3xl absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
         bgcolor === 'white' ? 'bg-white backdrop-blur-md' : 'bg-gradient-to-b from-[#1F2937] to-[#11182700] backdrop-blur-md'
       }`}
     >
