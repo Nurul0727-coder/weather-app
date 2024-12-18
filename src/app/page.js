@@ -92,7 +92,7 @@ export default function Home() {
         <Circle size={940} />
 
       </div>
-      <Logo />
+      {/* <Logo /> */}
     </div>
   );
 }
