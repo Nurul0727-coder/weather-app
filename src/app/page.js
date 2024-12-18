@@ -1,34 +1,72 @@
+"use client"
 import WeatherCard from './components/WeatherCard';
 import Circle from './components/circles';
-import Logo, { YellowCircle } from './components/decoration';
+import Logo from './components/decoration';
 import { Search } from './components/decoration';
 import { Icons } from './components/decoration';
 import { CiLocationOn } from "react-icons/ci";
 import { BlueCircle } from './components/decoration';
-// import { YellowCircle } from './components/decoration';
+import { YellowCircle } from './components/decoration';
+import { useState, useEffect } from 'react';
 
 const API_KEY='15ce7f6cb50a4224b3672555241312'
+
+
 export default function Home() {
+  const [search, setSearch ]=useState('');
+  const [city, setCity] =useState('Ulaanbaatar');
+  const [dayWeather,setDayWeather]=useState({})
+ 
+  const onChangeText=(e) => {
+   const value=e.target.value
+   setSearch(value)
+  };
+ 
+  const onPressEnter=(e)=>{
+    if(e.code==='Enter'){
+      setCity(search);
+    }
+  }
+     useEffect(()=>{
+      fetch(`http://api.weatherapi.com/v1/forecast.json?key=5bf8f7f6f1ac4ed1ae772612241312&q=${city}&days=1&aqi=no&alerts=no`)
+      .then((response)=> response.json())
+      .then((data)=>{
+      setDayWeather({
+        temperature : data.forecast.forecastday[0].day.maxtemp_c,
+        nightTemp: data.forecast.forecastday[0].day.mintemp_c,
+        condition: data.forecast.forecastday[0].day.condition.text,
+        date: data.forecast.forecastday[0].date
+        }
+       )      
+      })
+     },[city]);
+
   return (
     <div className="flex h-screen w-full bg-white justify-center relative">
       <div className="w-[1200px] h-full flex relative font-semibold">
   
         <div className="w-1/2 h-full bg-[#F3F4F6] relative">
-        {/* <YellowCircle/> */}
+        <YellowCircle/>
+          <Search
+           visible={true}
+           search={search}
+           onChangeText={onChangeText}
+           onPressEnter={onPressEnter}
+          />
           <Search visible={true} />
           <WeatherCard
             bgcolor="white"
-            date="Sep 10, 2024"
-            cityName="Krakow"
-            temperature="12°"
-            stat="Bright"
+            date={dayWeather.date}
+            cityName={city}
+            temperature={`${dayWeather.temperature}°`}
+            stat={dayWeather.condition}
             weatherType="day"
             textColor="black"
             statColor="green"
             temperatureColor="black"
           />
-          <Icons iconColor="black" />
-          <CiLocationOn className="absolute text-xl text-black z-40 ml-[405px] my-[160px]" />
+          <Icons iconColor="#D1D5DB" />
+          <CiLocationOn className="absolute text-xl text-black z-40 ml-[405px] my-[270px]" />
         </div>
  
         <div className="w-1/2 h-full bg-[#0F141E] relative">
@@ -36,23 +74,22 @@ export default function Home() {
           <Search visible={false} />
           <WeatherCard
             bgcolor="black"
-            date="Sep 10, 2024"
-            cityName="Krakow"
-            temperature="-2°"
-            stat="Clear"
+            date={dayWeather.date}
+            cityName={city}
+            temperature={`${dayWeather.nightTemp}°`}
+            stat={dayWeather.condition}
             weatherType="night"
             textColor="white"
             statColor="green"
           />
           <Icons iconColor="white" />
-          <CiLocationOn className="absolute text-xl text-white z-40 ml-[405px] my-[160px]" />
+          <CiLocationOn className="absolute text-xl text-white z-40 ml-[405px] my-[270px]" />
         </div>
  
         <Circle size={140} />
         <Circle size={340} />
         <Circle size={540} />
         <Circle size={940} />
-        {/* <Circle size={1340} /> */}
 
       </div>
       <Logo />
